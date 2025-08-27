@@ -1,115 +1,149 @@
-# convert2ebook.py
+# Convert2eBook
 
-## Version Française
+[![Python](https://img.shields.io/badge/Python-3.6%2B-blue.svg?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![Pandoc](https://img.shields.io/badge/Pandoc-Required-yellow.svg?style=for-the-badge&logo=pandoc)](https://pandoc.org/)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPLv3-blue.svg?style=for-the-badge)](https://www.gnu.org/licenses/agpl-3.0)
+[![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20macOS%20%7C%20Windows-lightgrey.svg?style=for-the-badge&logo=linux)](https://www.linux.org/)
 
-Script Python pour convertir un ou plusieurs fichiers ODT en PDF et/ou ePub.
+[English Version below](#english-version)
 
-### Fonctionnalités
+## 🇫🇷 Version Française
 
-- Convertit un fichier `.odt` en PDF et/ou ePub.
-- Supporte plusieurs fichiers à la fois.
-- Choix du dossier de sortie.
-- Vérifie Pandoc et LaTeX (optionnel pour PDF).
+### Objectif
+`Convert2eBook` est un script en ligne de commande qui utilise la puissance de **Pandoc** pour convertir facilement un ou plusieurs documents au format `.odt` (OpenDocument Text) en fichiers `.pdf` et/ou `.epub`.
 
-### Prérequis
+C'est l'outil idéal pour transformer rapidement vos manuscrits, rapports ou documents en formats prêts pour la lecture sur liseuse ou pour une distribution universelle.
 
-- Python 3
-- [pypandoc](https://pypi.org/project/pypandoc/) : `pip install pypandoc`
-- [Pandoc](https://pandoc.org/installing.html)
-- LaTeX (optionnel pour PDF de meilleure qualité)
+### ✨ Fonctionnalités
+- **Conversion Multiple :** Convertit un ou plusieurs fichiers `.odt` en une seule commande.
+- **Formats Flexibles :** Génère des fichiers PDF, ePub, ou les deux simultanément.
+- **Sortie Personnalisée :** Permet de spécifier un répertoire de sortie pour organiser vos fichiers convertis.
+- **Vérification des Dépendances :** Contrôle automatiquement la présence de `Pandoc` et vous informe si `LaTeX` est disponible pour une qualité PDF optimale.
+- **Multi-plateforme :** Fonctionne sur Windows, macOS et Linux.
 
-### Usage
+### 🛠️ Prérequis
+Avant de lancer le script, assurez-vous que les outils suivants sont installés sur votre système :
 
-\`\`\`bash
-python convert2ebook.py [--pdf|--epub] [--output dossier] <fichier1.odt> [fichier2.odt] ...
-\`\`\`
+1.  **Python 3.6+**
+2.  **Pandoc :** L'outil de conversion de documents universel.
+    -   *Instructions d'installation :* [pandoc.org/installing.html](https://pandoc.org/installing.html)
+3.  **(Optionnel mais Recommandé) Une distribution LaTeX :** Pour générer des PDF de haute qualité.
+    -   *Windows :* [MiKTeX](https://miktex.org/)
+    -   *macOS :* [MacTeX](https://www.tug.org/mactex/)
+    -   *Linux (Debian/Ubuntu) :* `sudo apt-get install texlive-full`
 
-#### Options
+### 🚀 Installation
+1.  Clonez ce dépôt ou téléchargez le script `convert2ebook.py`.
+2.  Installez la dépendance Python nécessaire via `pip` :
+    ```bash
+    pip install pypandoc
+    ```
 
-\| Option          \| Description \|
-\|-----------------\|-------------\|
-\| `--pdf`         \| Génère uniquement le PDF \|
-\| `--epub`        \| Génère uniquement le ePub \|
-\| `--output DIR`  \| Dossier de sortie (par défaut : dossier courant) \|
+### 📖 Utilisation
+Le script s'utilise directement en ligne de commande.
 
-#### Exemples
+```bash
+python convert2ebook.py [OPTIONS] <fichier1.odt> [fichier2.odt...]
+```
 
-- PDF + ePub :  
-\`\`\`bash
-python convert2ebook.py mon_doc.odt
-\`\`\`
+**Options :**
 
-- PDF seulement :  
-\`\`\`bash
-python convert2ebook.py --pdf mon_doc.odt
-\`\`\`
+| Option | Description |
+|---|---|
+| `--pdf` | Génère **uniquement** le(s) fichier(s) PDF. |
+| `--epub` | Génère **uniquement** le(s) fichier(s) ePub. |
+| `--output <dossier>` | Spécifie le répertoire où les fichiers convertis seront sauvegardés. Par défaut, ils sont créés dans le répertoire courant. |
 
-- ePub seulement dans `ebooks/` :  
-\`\`\`bash
-python convert2ebook.py --epub --output ebooks mon_doc.odt
-\`\`\`
+*Note : Si ni `--pdf` ni `--epub` ne sont spécifiés, les deux formats seront générés.*
 
-- Plusieurs fichiers :  
-\`\`\`bash
-python convert2ebook.py doc1.odt doc2.odt --output ebooks
-\`\`\`
+### 💡 Exemples
+
+1.  **Convertir un fichier en PDF et ePub :**
+    ```bash
+    python convert2ebook.py "Mon Document.odt"
+    ```
+
+2.  **Convertir un fichier en PDF uniquement :**
+    ```bash
+    python convert2ebook.py --pdf "Mon Document.odt"
+    ```
+
+3.  **Convertir plusieurs fichiers en ePub et les placer dans un dossier `Sortie` :**
+    ```bash
+    python convert2ebook.py --epub --output Sortie "Chapitre 1.odt" "Chapitre 2.odt"
+    ```
+
+### ⚖️ Licence
+Ce projet est sous licence AGPLv3. Voir le fichier `LICENSE` pour plus de détails.
 
 ---
+<a name="english-version"></a>
 
-**English version below**
+## 🇬🇧 English Version
 
----
+### Objective
+`Convert2eBook` is a command-line script that leverages the power of **Pandoc** to easily convert one or more `.odt` (OpenDocument Text) documents into `.pdf` and/or `.epub` files.
 
-## English Version
+It's the ideal tool to quickly transform your manuscripts, reports, or documents into formats ready for e-readers or universal distribution.
 
-Python script to convert one or multiple ODT files to PDF and/or ePub.
+### ✨ Features
+- **Batch Conversion:** Convert one or more `.odt` files in a single command.
+- **Flexible Formats:** Generate PDF, ePub, or both formats simultaneously.
+- **Custom Output:** Allows specifying an output directory to organize your converted files.
+- **Dependency Check:** Automatically checks for `Pandoc` and informs you if `LaTeX` is available for optimal PDF quality.
+- **Cross-platform:** Works on Windows, macOS, and Linux.
 
-### Features
+### 🛠️ Prerequisites
+Before running the script, ensure the following tools are installed on your system:
 
-- Convert `.odt` files to PDF and/or ePub.
-- Supports multiple files in a single command.
-- Allows specifying output folder.
-- Checks for Pandoc and LaTeX (optional for PDF).
+1.  **Python 3.6+**
+2.  **Pandoc:** The universal document converter.
+    -   *Installation instructions:* [pandoc.org/installing.html](https://pandoc.org/installing.html)
+3.  **(Optional but Recommended) A LaTeX distribution:** To generate high-quality PDFs.
+    -   *Windows:* [MiKTeX](https://miktex.org/)
+    -   *macOS:* [MacTeX](https://www.tug.org/mactex/)
+    -   *Linux (Debian/Ubuntu):* `sudo apt-get install texlive-full`
 
-### Prerequisites
+### 🚀 Installation
+1.  Clone this repository or download the `convert2ebook.py` script.
+2.  Install the required Python dependency using `pip`:
+    ```bash
+    pip install pypandoc
+    ```
 
-- Python 3
-- [pypandoc](https://pypi.org/project/pypandoc/) : `pip install pypandoc`
-- [Pandoc](https://pandoc.org/installing.html)
-- LaTeX (optional for better PDF rendering)
+### 📖 Usage
+The script is used directly from the command line.
 
-### Usage
+```bash
+python convert2ebook.py [OPTIONS] <file1.odt> [file2.odt...]
+```
 
-\`\`\`bash
-python convert2ebook.py [--pdf|--epub] [--output folder] <file1.odt> [file2.odt] ...
-\`\`\`
+**Options:**
 
-#### Options
+| Option | Description |
+|---|---|
+| `--pdf` | Generates PDF file(s) **only**. |
+| `--epub` | Generates ePub file(s) **only**. |
+| `--output <directory>` | Specifies the directory where the converted files will be saved. By default, they are created in the current directory. |
 
-\| Option          \| Description \|
-\|-----------------\|-------------\|
-\| `--pdf`         \| Generate PDF only \|
-\| `--epub`        \| Generate ePub only \|
-\| `--output DIR`  \| Output folder (default: current directory) \|
+*Note: If neither `--pdf` nor `--epub` is specified, both formats will be generated.*
 
-#### Examples
+### 💡 Examples
 
-- PDF + ePub:  
-\`\`\`bash
-python convert2ebook.py my_doc.odt
-\`\`\`
+1.  **Convert a file to both PDF and ePub:**
+    ```bash
+    python convert2ebook.py "My Document.odt"
+    ```
 
-- PDF only:  
-\`\`\`bash
-python convert2ebook.py --pdf my_doc.odt
-\`\`\`
+2.  **Convert a file to PDF only:**
+    ```bash
+    python convert2ebook.py --pdf "My Document.odt"
+    ```
 
-- ePub only, output to `ebooks/`:  
-\`\`\`bash
-python convert2ebook.py --epub --output ebooks my_doc.odt
-\`\`\`
+3.  **Convert multiple files to ePub and place them in an `Output` folder:**
+    ```bash
+    python convert2ebook.py --epub --output Output "Chapter 1.odt" "Chapter 2.odt"
+    ```
 
-- Multiple files:  
-\`\`\`bash
-python convert2ebook.py doc1.odt doc2.odt --output ebooks
-\`\`\`
+### ⚖️ Licence
+This project is licensed under the AGPLv3 License. See the `LICENSE` file for more details.

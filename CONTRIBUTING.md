@@ -1,18 +1,14 @@
 # Guide de Contribution
 
-## Dépôt Officiel / Official Repository
-
-> **Français :**
-> Le développement et la maintenance de ce projet se font exclusively sur notre instance GitLab : **[https://gitlab.villejuif.fr/depots-public/comparelocaladmin](https://gitlab.villejuif.fr/depots-public/comparelocaladmin)**.
+> **Note sur le Dépôt Officiel**
 >
-> C'est le seul endroit où les contributions (rapports de bugs, suggestions, requêtes de fusion) seront acceptées.
+> Ce projet est maintenu sur le [GitLab de la Mairie de Villejuif](https://gitlab.villejuif.fr/J-COQBLIN/convert2ebook). Des miroirs en lecture seule peuvent exister sur d'autres plateformes (GitHub, etc.), mais cette instance est la seule source officielle. Toutes les contributions (tickets, requêtes de fusion) doivent y être soumises.
 >
-> **English:**
-> Development and maintenance of this project occur exclusively on our GitLab instance: **[https://gitlab.villejuif.fr/depots-public/comparelocaladmin](https://gitlab.villejuif.fr/depots-public/comparelocaladmin)**.
+> ---
 >
-> This is the only place where contributions (bug reports, suggestions, merge requests) will be accepted.
-
----
+> **Note on the Official Repository**
+>
+> This project is maintained on the [Mairie de Villejuif's GitLab](https://gitlab.villejuif.fr/J-COQBLIN/convert2ebook). Read-only mirrors may exist on other platforms (GitHub, etc.), but this instance is the single source of truth. All contributions (issues, merge requests) must be submitted here.
 
 Nous sommes ravis que vous envisagiez de contribuer à ce projet ! Toute contribution est la bienvenue, qu'il s'agisse de rapports de bugs, de suggestions de fonctionnalités ou de soumissions de code.
 

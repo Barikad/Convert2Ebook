@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+#
+# Auteur:       Joachim COQBLIN + un peu de LLM
+# Version:      1.1
+# Licence:      AGPLv3
+# Source:       https://gitlab.villejuif.fr/J-COQBLIN/convert2ebook
+#
 """
 convert2ebook.py
 

@@ -34,10 +34,10 @@ def msg(fr, en):
 try:
     import pypandoc
 except ImportError:
-    print(msg("❌ Le module 'pypandoc' n'est pas installé.",
-              "❌ The 'pypandoc' module is not installed."))
-    print(msg("👉 Installe-le avec : pip install pypandoc",
-              "👉 Install with: pip install pypandoc"))
+    print(msg("[-] Le module 'pypandoc' n'est pas installé.",
+              "[-] The 'pypandoc' module is not installed."))
+    print(msg("-> Installe-le avec : pip install pypandoc",
+              "-> Install with: pip install pypandoc"))
     sys.exit(1)
 
 def check_dependencies():
@@ -67,8 +67,8 @@ def check_dependencies():
 
 def convert_to_ebook(input_file: str, make_pdf: bool, make_epub: bool, output_dir: str):
     if not os.path.isfile(input_file):
-        print(msg(f"❌ Fichier introuvable : {input_file}",
-                  f"❌ File not found: {input_file}"))
+        print(msg(f"[-] Fichier introuvable : {input_file}",
+                  f"[-] File not found: {input_file}"))
         return
 
     base_name = os.path.splitext(os.path.basename(input_file))[0]
@@ -84,18 +84,18 @@ def convert_to_ebook(input_file: str, make_pdf: bool, make_epub: bool, output_di
                 extra_args.append(f'--pdf-engine={PDF_ENGINE}')
             
             pypandoc.convert_file(input_file, 'pdf', outputfile=pdf_file, extra_args=extra_args)
-            print(msg(f"✅ PDF généré : {pdf_file}",
-                      f"✅ PDF generated: {pdf_file}"))
+            print(msg(f"[+] PDF généré : {pdf_file}",
+                      f"[+] PDF generated: {pdf_file}"))
 
         if make_epub:
             epub_file = os.path.join(output_dir, f"{base_name}.epub")
             pypandoc.convert_file(input_file, 'epub', outputfile=epub_file, extra_args=['--standalone'])
-            print(msg(f"✅ ePub généré : {epub_file}",
-                      f"✅ ePub generated: {epub_file}"))
+            print(msg(f"[+] ePub généré : {epub_file}",
+                      f"[+] ePub generated: {epub_file}"))
 
     except Exception as e:
-        print(msg(f"❌ Erreur pendant la conversion de {input_file} : {e}",
-                  f"❌ Error converting {input_file} : {e}"))
+        print(msg(f"[-] Erreur pendant la conversion de {input_file} : {e}",
+                  f"[-] Error converting {input_file} : {e}"))
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
@@ -121,15 +121,15 @@ if __name__ == "__main__":
     if "--output" in args:
         idx = args.index("--output")
         if idx + 1 >= len(args):
-            print(msg("❌ L'option --output nécessite un chemin",
-                      "❌ --output option requires a folder path"))
+            print(msg("[-] L'option --output nécessite un chemin",
+                      "[-] --output option requires a folder path"))
             sys.exit(1)
         output_dir = args[idx + 1]
         args.pop(idx)
         args.pop(idx)
 
     if not args:
-        print(msg("❌ Aucun fichier fourni", "❌ No files provided"))
+        print(msg("[-] Aucun fichier fourni", "[-] No files provided"))
         sys.exit(1)
 
     check_dependencies()

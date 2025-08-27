@@ -27,8 +27,9 @@ C'est l'outil idéal pour transformer rapidement vos manuscrits, rapports ou doc
 ### ✨ Fonctionnalités
 - **Conversion Multiple :** Convertit un ou plusieurs fichiers `.odt` en une seule commande.
 - **Formats Flexibles :** Génère des fichiers PDF, ePub, ou les deux simultanément.
+- **Support Unicode Amélioré (PDF) :** Utilise automatiquement le moteur `xelatex` s'il est disponible pour une prise en charge complète des caractères spéciaux et internationaux.
 - **Sortie Personnalisée :** Permet de spécifier un répertoire de sortie pour organiser vos fichiers convertis.
-- **Vérification des Dépendances :** Contrôle automatiquement la présence de `Pandoc` et vous informe si `LaTeX` est disponible pour une qualité PDF optimale.
+- **Vérification des Dépendances :** Contrôle la présence de `Pandoc` et `LaTeX` pour assurer un fonctionnement optimal.
 - **Multi-plateforme :** Fonctionne sur Windows, macOS et Linux.
 
 ### 🛠️ Prérequis
@@ -37,10 +38,12 @@ Avant de lancer le script, assurez-vous que les outils suivants sont installés 
 1.  **Python 3.6+**
 2.  **Pandoc :** L'outil de conversion de documents universel.
     -   *Instructions d'installation :* [pandoc.org/installing.html](https://pandoc.org/installing.html)
-3.  **(Optionnel mais Recommandé) Une distribution LaTeX :** Pour générer des PDF de haute qualité.
+3.  **(Fortement Recommandé pour les PDF) Une distribution LaTeX :** Pour générer des PDF de haute qualité avec une prise en charge complète des caractères Unicode (accents, alphabets non-latins, etc.).
     -   *Windows :* [MiKTeX](https://miktex.org/)
     -   *macOS :* [MacTeX](https://www.tug.org/mactex/)
     -   *Linux (Debian/Ubuntu) :* `sudo apt-get install texlive-full`
+
+*Note : Sans LaTeX, la conversion PDF ne fonctionnera pas ou produira un résultat de qualité inférieure via un autre moteur de Pandoc.*
 
 ### 🚀 Installation
 1.  Clonez ce dépôt ou téléchargez le script `convert2ebook.py`.
@@ -99,8 +102,9 @@ It's the ideal tool to quickly transform your manuscripts, reports, or documents
 ### ✨ Features
 - **Batch Conversion:** Convert one or more `.odt` files in a single command.
 - **Flexible Formats:** Generate PDF, ePub, or both formats simultaneously.
+- **Enhanced Unicode Support (PDF):** Automatically uses the `xelatex` engine if available for full support of special and international characters.
 - **Custom Output:** Allows specifying an output directory to organize your converted files.
-- **Dependency Check:** Automatically checks for `Pandoc` and informs you if `LaTeX` is available for optimal PDF quality.
+- **Dependency Check:** Checks for `Pandoc` and `LaTeX` to ensure optimal performance.
 - **Cross-platform:** Works on Windows, macOS, and Linux.
 
 ### 🛠️ Prerequisites
@@ -109,10 +113,12 @@ Before running the script, ensure the following tools are installed on your syst
 1.  **Python 3.6+**
 2.  **Pandoc:** The universal document converter.
     -   *Installation instructions:* [pandoc.org/installing.html](https://pandoc.org/installing.html)
-3.  **(Optional but Recommended) A LaTeX distribution:** To generate high-quality PDFs.
+3.  **(Strongly Recommended for PDFs) A LaTeX distribution:** To generate high-quality PDFs with full support for Unicode characters (accents, non-Latin alphabets, etc.).
     -   *Windows:* [MiKTeX](https://miktex.org/)
     -   *macOS:* [MacTeX](https://www.tug.org/mactex/)
     -   *Linux (Debian/Ubuntu):* `sudo apt-get install texlive-full`
+
+*Note: Without LaTeX, PDF conversion will either fail or produce a lower-quality result through another Pandoc engine.*
 
 ### 🚀 Installation
 1.  Clone this repository or download the `convert2ebook.py` script.

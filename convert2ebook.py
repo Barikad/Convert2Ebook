@@ -4,11 +4,11 @@ convert2ebook.py
 
 Script Python pour convertir un ou plusieurs fichiers ODT en PDF et/ou ePub
 en utilisant Pandoc (avec pypandoc). La génération PDF est optimisée si un
-moteur LaTeX est installé.
+moteur LaTeX moderne comme XeLaTeX est installé.
 
 Python script to convert one or multiple ODT files to PDF and/or ePub
-using Pandoc (via pypandoc). PDF generation is optimized if a LaTeX engine
-is installed.
+using Pandoc (via pypandoc). PDF generation is optimized if a modern LaTeX
+engine like XeLaTeX is installed.
 
 Toutes les sorties console sont affichées en français et en anglais.
 All console outputs are displayed in French and English.
@@ -17,6 +17,9 @@ All console outputs are displayed in French and English.
 import sys
 import os
 import shutil
+
+# Variable globale pour stocker le moteur PDF à utiliser
+PDF_ENGINE = None
 
 def msg(fr, en):
     return f"{fr} / {en}"
@@ -31,6 +34,7 @@ except ImportError:
     sys.exit(1)
 
 def check_dependencies():
+    global PDF_ENGINE
     if not shutil.which("pandoc"):
         print(msg("❌ Pandoc n'est pas installé ou introuvable dans le PATH.",
                   "❌ Pandoc is not installed or not in PATH."))
@@ -40,14 +44,19 @@ def check_dependencies():
     else:
         print(msg("✅ Pandoc détecté", "✅ Pandoc detected"))
 
-    if shutil.which("pdflatex") or shutil.which("xelatex") or shutil.which("lualatex"):
+    # Détection du moteur LaTeX, priorité à xelatex pour la compatibilité Unicode
+    if shutil.which("xelatex"):
+        print(msg("✅ Moteur XeLaTeX détecté (PDF optimal avec support Unicode)",
+                  "✅ XeLaTeX engine detected (optimal PDF with Unicode support)"))
+        PDF_ENGINE = "xelatex"
+    elif shutil.which("pdflatex") or shutil.which("lualatex"):
         print(msg("✅ Système LaTeX détecté (PDF optimal)",
                   "✅ LaTeX system detected (optimal PDF)"))
     else:
-        print(msg("⚠️  Aucun moteur LaTeX détecté, PDF simplifié",
-                  "⚠️  No LaTeX engine detected, PDF may be basic"))
-        print(msg("👉 Installe TeX Live ou MikTeX",
-                  "👉 Install TeX Live or MikTeX"))
+        print(msg("⚠️  Aucun moteur LaTeX détecté, la qualité du PDF sera basique",
+                  "⚠️  No LaTeX engine detected, PDF quality will be basic"))
+        print(msg("👉 Pour un meilleur résultat, installe TeX Live ou MikTeX",
+                  "👉 For best results, install TeX Live or MikTeX"))
 
 def convert_to_ebook(input_file: str, make_pdf: bool, make_epub: bool, output_dir: str):
     if not os.path.isfile(input_file):
@@ -63,7 +72,11 @@ def convert_to_ebook(input_file: str, make_pdf: bool, make_epub: bool, output_di
     try:
         if make_pdf:
             pdf_file = os.path.join(output_dir, f"{base_name}.pdf")
-            pypandoc.convert_file(input_file, 'pdf', outputfile=pdf_file, extra_args=['--standalone'])
+            extra_args = ['--standalone']
+            if PDF_ENGINE:
+                extra_args.append(f'--pdf-engine={PDF_ENGINE}')
+            
+            pypandoc.convert_file(input_file, 'pdf', outputfile=pdf_file, extra_args=extra_args)
             print(msg(f"✅ PDF généré : {pdf_file}",
                       f"✅ PDF generated: {pdf_file}"))
 
